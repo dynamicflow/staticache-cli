@@ -1,0 +1,9 @@
+node_modules
+.idea
+.jshintrc
+.project
+.sublime-project
+.tern-project
+.settings
+storage
+npm-debug.log
