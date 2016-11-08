@@ -4,7 +4,7 @@
   "description": "command line helper to upload current directory to a given staticache",
   "repository": "https://github.com/dynamicflow/staticache-cli.git",
   "bin": {
-    "snippet": "./index.js"
+    "staticache": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
