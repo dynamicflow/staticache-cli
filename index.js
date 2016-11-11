@@ -7,9 +7,9 @@ const Throttle = require('superagent-throttle')
 
 let throttle = new Throttle({
     active: true,     // set false to pause queue
-    rate: 40,          // how many requests can be sent every `ratePer`
+    rate: 100,          // how many requests can be sent every `ratePer`
     ratePer: 1000,   // number of ms in which `rate` requests may be sent
-    concurrent: 20     // how many requests can be sent concurrently
+    concurrent: 100     // how many requests can be sent concurrently
 })
 
 function uploadFile(program, file, path) {
@@ -27,7 +27,12 @@ function uploadFile(program, file, path) {
 
     req.end(function (err, res) {
         if (err || !res.ok) {
-            console.error('Error: %s in file %s',err.message,file);
+            if (err.response.body && err.response.body.message) {
+                console.error('Error: %s in file %s',err.response.body.message,file);
+            } else {
+                console.error('Error: %s in file %s',err.message,file);
+            }
+
         } else {
             //console.log("response: ", JSON.stringify(res.body));
             if (typeof res.body.width === 'undefined') {
